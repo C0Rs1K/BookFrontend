@@ -1,0 +1,24 @@
+<div class="container">
+  <h1>Список книг</h1>
+
+  <app-filters
+    [genres]="genres"
+    [authors]="authors"
+    (filter)="onFilter($event)">
+  </app-filters>
+
+  <div class="search-bar">
+    <input type="text" [(ngModel)]="searchParams.title" placeholder="Поиск по названию" />
+    <button (click)="onSearch()">Найти</button>
+  </div>
+
+  <div class="book-grid">
+    <app-book-card *ngFor="let book of books" [book]="book"></app-book-card>
+  </div>
+
+  <app-pagination
+    [currentPage]="searchParams.pageNumber"
+    [totalPages]="totalPages"
+    (pageChange)="onPageChange($event)">
+  </app-pagination>
+</div>

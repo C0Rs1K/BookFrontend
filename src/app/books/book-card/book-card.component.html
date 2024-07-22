@@ -1,0 +1,18 @@
+<a href="/books/{{ book.id }}" class="book-item">
+  <img [src]="book.imagePath" alt="{{ book.name }}" class="book-image" />
+
+  <div class="book-details">
+    <h2 class="book-title">{{ book.name }}</h2>
+    <p class="book-author">Author ID: {{ book.authorId }}</p>
+    <p class="book-genre">Genre: {{ book.genre }}</p>
+
+    <ng-container *ngIf="isAvailable(); else unavailableTemplate">
+      <p class="book-description">{{ book.description }}</p>
+    </ng-container>
+
+    <ng-template #unavailableTemplate>
+      <p class="book-owner">Owner: {{ book.bookOwner }}</p>
+      <p class="book-unavailable">This book is currently unavailable.</p>
+    </ng-template>
+  </div>
+</a>

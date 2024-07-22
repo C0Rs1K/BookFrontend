@@ -1,0 +1,21 @@
+<form (ngSubmit)="onSave()" class="book-form">
+  <div class="form-group">
+    <label for="title" class="form-label">Title</label>
+    <input type="text" class="form-control" id="title" [(ngModel)]="book.name" name="title">
+  </div>
+  <div class="form-group">
+    <label for="author" class="form-label">Author</label>
+    <select class="form-control" id="author" [(ngModel)]="book.authorId" name="author">
+      <option *ngFor="let author of authors" [value]="authorService.getAuthorId(author)">{{ author }}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="genre" class="form-label">Genre</label>
+    <input type="text" class="form-control" id="genre" [(ngModel)]="book.genre" name="genre">
+  </div>
+  <div class="form-group">
+    <label for="description" class="form-label">Description</label>
+    <textarea class="form-control" id="description" [(ngModel)]="book.description" name="description"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Save</button>
+</form>

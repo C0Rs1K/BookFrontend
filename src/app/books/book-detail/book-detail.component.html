@@ -1,0 +1,30 @@
+<div class="book-detail-container">
+  <div class="book-image-container">
+    <img [src]="book.imagePath" alt="{{ book.name }}" class="book-image" />
+  </div>
+
+  <div class="book-info">
+    <h1 class="book-title">{{ book.name }}</h1>
+    <p class="book-author">Author: {{ book.authorId }}</p>
+    <p class="book-genre">Genre: {{ book.genre }}</p>
+    <p class="book-description">{{ book.description }}</p>
+
+    <ng-container *ngIf="isAvailable(); else unavailableTemplate">
+      <button (click)="takeBook()" class="btn btn-primary">Take Book</button>
+    </ng-container>
+
+    <ng-template #unavailableTemplate>
+      <p class="book-unavailable">This book is currently unavailable.</p>
+      <p class="book-owner">Owner: {{ book.bookOwner }}</p>
+      <p class="book-dates">
+        <span>Taken: {{ book.takeTime | date:'medium' }}</span>
+        <span>Returned: {{ book.returnTime | date:'medium' }}</span>
+      </p>
+    </ng-template>
+
+    <div *ngIf="isAdmin" class="admin-controls">
+      <button (click)="editBook()" class="btn btn-secondary">Edit</button>
+      <button (click)="deleteBook()" class="btn btn-danger">Delete</button>
+    </div>
+  </div>
+</div>
